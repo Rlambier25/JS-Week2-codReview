@@ -33,6 +33,18 @@
     "gulp-util": "^3.0.7",
     "lite-server": "^2.1.0",
     "typescript": "^1.8.2",
-    "typings": "^0.6.8"
-  }
+    "typings": "^0.6.8",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rlambier25/JS-Week2-codReview.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/Rlambier25/JS-Week2-codReview/issues"
+  },
+  "homepage": "https://github.com/Rlambier25/JS-Week2-codReview#readme",
+  "description": ""
 }
