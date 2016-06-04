@@ -50,10 +50,10 @@ export class AppComponent {
   public meals: Meal[];
   constructor() {
     this.meals = [
-      new Meal("first meal", "It was ok", 0),
-      new Meal("second meal", "It was meh", 1),
-      new Meal("third meal", "Ew", 2),
-      new Meal("fourth meal", "Ate at iHop", 3)
+      new Meal("first meal", "It was ok", 255),
+      new Meal("second meal", "It was meh", 160),
+      new Meal("third meal", "Ew", 200),
+      new Meal("fourth meal", "Ate at iHop", 323)
     ];
   }
 }
