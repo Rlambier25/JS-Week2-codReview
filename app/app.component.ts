@@ -37,9 +37,10 @@ import { Meal } from './meal.model';
   directives: [MealListComponent],
   template: `
     <div class="container">
-      <h1>To Do</h1>
+      <h1>Meal Tracker</h1>
       <meal-list
-        [mealList]="meals">
+        [mealList]="meals"
+        (onMealSelect)="mealWasSelected($event)">
       </meal-list>
     </div>
   `
@@ -49,17 +50,17 @@ export class AppComponent {
   public meals: Meal[];
   constructor() {
     this.meals = [
-      new Meal("first meal", 0),
-      new Meal("second meal", 1),
-      new Meal("third meal", 2),
-      new Meal("fourth meal", 3)
+      new Meal("first meal", "It was ok", 0),
+      new Meal("second meal", "It was meh", 1),
+      new Meal("third meal", "Ew", 2),
+      new Meal("fourth meal", "Ate at iHop", 3)
     ];
   }
 }
-//   mealWasSelected(clickedMeal: Meal): void {
-//     console.log('parent', clickedMeal);
-//   }
-// }
+  // mealWasSelected(clickedMeal: Meal): void {
+  //   console.log('parent', clickedMeal);
+  // }
+
 //
 // export class Meal {
 //   public done: boolean = false;

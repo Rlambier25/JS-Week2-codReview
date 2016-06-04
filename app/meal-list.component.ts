@@ -3,25 +3,27 @@ import { MealComponent } from './meal.component';
 import { Meal } from './meal.model';
 import { EditMealDetailsComponent } from './edit-meal-details.component';
 import { NewMealComponent } from './new-meal.component';
-import {DonePipe} from './done.pipe';
+import {foodPipe} from './food.pipe';
 
 @Component({
   selector: 'meal-list',
   inputs: ['mealList'],
-  pipes: [DonePipe],
+  outputs: ['onMealSelect'],
+  pipes: [foodPipe],
   directives: [MealComponent, EditMealDetailsComponent, NewMealComponent],
   template: `
   <select (change)="onChange($event.target.value)" class="filter">
-  <option value="all">Show All</option>
-  <option value="done">Show Done</option>
-  <option value="notDone" selected="selected">Show Not Done</option>
-</select>
-  <meal-display *ngFor="#currentMeal of mealList | done:filterDone"
+    <option value="all">Show All</option>
+    <option value="healthy">Show Healthy</option>
+    <option value="notHealthy" selected="selected">Show Not Healthy</option>
+  </select>
+  <meal-display *ngFor="#currentMeal of mealList | healthy:filterHealthy"
     (click)="mealClicked(currentMeal)"
     [class.selected]="currentMeal === selectedMeal"
-    [meal]="currentMeal">
+    [meal]="currentMeal" class="meal-display">
   </meal-display>
-  <edit-meal-details *ngIf="selectedMeal" [meal]="selectedMeal"></edit-meal-details>
+  <edit-meal-details *ngIf="selectedMeal" [meal]="selectedMeal">
+  </edit-meal-details>
   <new-meal (onSubmitNewMeal)="createMeal($event)"></new-meal>
   `
 })
@@ -29,7 +31,7 @@ export class MealListComponent {
   public mealList: Meal[];
   public onMealSelect: EventEmitter<Meal>;
   public selectedMeal: Meal;
-  public filterDone: string = "notDone";
+  public filterHealthy: string = "notHealthy";
   constructor() {
     this.onMealSelect = new EventEmitter();
   }
@@ -37,12 +39,10 @@ export class MealListComponent {
     this.selectedMeal = clickedMeal;
     this.onMealSelect.emit(clickedMeal);
   }
-  createMeal(description: string): void {
-    this.mealList.push(
-      new Meal(description, this.mealList.length)
-    );
+  createMeal(meal: Meal): void {
+    this.mealList.push(meal);
   }
   onChange(filterOption) {
-    this.filterDone = filterOption;
+    this.filterHealthy = filterOption;
   }
 }

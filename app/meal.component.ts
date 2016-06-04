@@ -1,21 +1,24 @@
-
 import { Component } from 'angular2/core';
 import { Meal } from './meal.model';
 
 @Component({
     selector: 'meal-display',
     inputs: ['meal'],
+
   template: `
+  <h3 (click)= "select()">{{ meal.food}}</h3>
   <div>
-    <input *ngIf="meal.done" type="checkbox" checked (click)="toggleDone(false)"/>
-    <input *ngIf="!meal.done" type="checkbox" (click)="toggleDone(true)"/>
-    <label>{{ meal.description }}</label>
+    <p>{{meal.calories}}</p>
+    <p>{{ meal.details }}</p>
   </div>
   `
+
+  //   <div *ngIf="hiddenDetail">
+
 })
 export class MealComponent {
   public meal: Meal;
-  toggleDone(setState: boolean){
-    this.meal.done = setState;
-  }
-}
+  toggleHealthy(setState: number){
+    this.meal.calories = setState;
+  };
+};
