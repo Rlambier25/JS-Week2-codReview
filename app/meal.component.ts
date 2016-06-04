@@ -12,9 +12,6 @@ import { Meal } from './meal.model';
     <p>{{ meal.details }}</p>
   </div>
   `
-
-  //   <div *ngIf="hiddenDetail">
-
 })
 export class MealComponent {
   public meal: Meal;
